@@ -7,12 +7,13 @@ import com.sid.coursesearch.document.CourseDocument;
 import com.sid.coursesearch.repository.CourseRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.CommandLineRunner;
-import org.springframework.context.annotation.Configuration;
+
+import org.springframework.stereotype.Component;
 
 import java.io.InputStream;
 import java.util.List;
 
-@Configuration
+@Component
 @RequiredArgsConstructor
 public class DataLoader implements CommandLineRunner {
     private final CourseRepository courseRepository;
@@ -28,7 +29,7 @@ public class DataLoader implements CommandLineRunner {
                     c.setSuggest(new String[]{c.getTitle()});
                 }
                 courseRepository.saveAll(courses);
-                System.out.println("✔ Successfully indexed " + courses.size() + " courses into Elasticsearch");
+                System.out.println("------------✔ Successfully indexed " + courses.size() + " courses into Elasticsearch");
             }
         }
     }
